@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Forms Trial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+        
+        .prompt-container {
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #4a4a4a;
+            text-align: center;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .prompt {
+            background-color: #f8f9fa;
+            border-left: 4px solid #764ba2;
+            padding: 1.5rem;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .prompt p:first-child {
+            font-weight: 600;
+            color: #764ba2;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .models-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .model-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .model-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .chatgpt-logo {
+            background: linear-gradient(135deg, #10a37f, #0a8c6a);
+        }
+        
+        .qwen-logo {
+            background: linear-gradient(135deg, #4285f4, #1a73e8);
+        }
+        
+        .claude-logo {
+            background: linear-gradient(135deg, #764ba2, #6B46C1);
+        }
+        
+        .model-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: #333;
+        }
+        
+        .view-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 10px rgba(118, 75, 162, 0.2);
+        }
+        
+        .view-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(118, 75, 162, 0.3);
+        }
+        
+        .view-button:active {
+            transform: translateY(0);
+        }
+        
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            font-size: 0.9rem;
+        }
+
+        footer p{
+            color: #fff;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .models-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login Forms Comparison</h1>
+        
+        <div class="prompt-container">
+            <h2>Challenge Prompt</h2>
+            <div class="prompt">
+                <p>Task:</p>
+                <p>Create the best-ever trending login and signup form, combined within a single div. At the top of the form, include two tabs for switching between the "Signup" and "Login" forms. Use advanced, professional styling for all input fields, buttons, headings, and colors, and apply the Poppins font throughout the design.</p>
+            </div>
+        </div>
+        
+        <h3>AI Model Implementations</h3>
+        <div class="models-container">
+            <div class="model-card">
+                <div class="model-logo chatgpt-logo">GPT</div>
+                <div class="model-name">ChatGPT 4o</div>
+                <p>Implementation of the login/signup form using OpenAI's advanced language model.</p>
+                <a href="https://login-form1-xi.vercel.app/" target="_blank" class="view-button">View Demo</a>
+            </div>
+            
+            <div class="model-card">
+                <div class="model-logo qwen-logo">QW</div>
+                <div class="model-name">Qwen Chat AI</div>
+                <p>Implementation of the login/signup form using Alibaba's Qwen language model.</p>
+                <a href="https://login-form2-one.vercel.app/" target="_blank" class="view-button">View Demo</a>
+            </div>
+            
+            <div class="model-card">
+                <div class="model-logo claude-logo">CL</div>
+                <div class="model-name">Claude 3.7 Sonnet</div>
+                <p>Implementation of the login/signup form using Anthropic's Claude model.</p>
+                <a href="https://login-form3.vercel.app/" target="_blank" class="view-button">View Demo</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 AI Form Comparison | Created for educational purposes</p>
+    </footer>
+</body>
+</html>
